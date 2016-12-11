@@ -4,9 +4,13 @@ import json
 import time
 import ssl
 
-# If you are in China use this URL:
+# Google API (requires API key)
+# serviceurl = "http://maps.googleapis.com/maps/api/geocode/json?"
+# If you are in China this URL might work (with key):
 # serviceurl = "http://maps.google.cn/maps/api/geocode/json?"
-serviceurl = "http://maps.googleapis.com/maps/api/geocode/json?"
+
+serviceurl = "http://python-data.dr-chuck.net/geojson?"
+
 
 # Deal with SSL certificate anomalies Python > 2.7
 # scontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
@@ -21,7 +25,9 @@ CREATE TABLE IF NOT EXISTS Locations (address TEXT, geodata TEXT)''')
 fh = open("where.data")
 count = 0
 for line in fh:
-    if count > 200 : break
+    if count > 200 : 
+        print 'Retrieved 200 locations, restart to retrieve more'
+        break
     address = line.strip()
     print ''
     cur.execute("SELECT geodata FROM Locations WHERE address= ?", (buffer(address), ))
@@ -49,11 +55,13 @@ for line in fh:
     if 'status' not in js or (js['status'] != 'OK' and js['status'] != 'ZERO_RESULTS') : 
         print '==== Failure To Retrieve ===='
         print data
-        break
+        continue
 
     cur.execute('''INSERT INTO Locations (address, geodata) 
             VALUES ( ?, ? )''', ( buffer(address),buffer(data) ) )
     conn.commit() 
-    time.sleep(1)
+    if count % 10 == 0 :
+        print('Pausing for a bit...')
+        time.sleep(5)
 
 print "Run geodump.py to read the data from the database so you can visualize it on a map."
