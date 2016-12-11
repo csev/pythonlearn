@@ -238,7 +238,7 @@ our new language skills.
 Before you can converse with Python, you must first install the Python
 software on your computer and learn how to start Python on your 
 computer.  That is too much detail for this chapter so I suggest
-that you consult www.pythonlearn.com where I have detailed
+that you consult www.py4e.com where I have detailed
 instructions and screencasts of setting up and starting Python 
 on Macintosh and Windows systems.  At some point, you will be in 
 a terminal or command window and you will type python and 
@@ -434,7 +434,7 @@ used to make the program.  You are the end user, you simply use the program and 
 at its cleverness and how it saved you so much manual effort.
 You simply type the code 
 into a file called words.py and run it or you download the source 
-code from http://www.pythonlearn.com/code/ and run it.
+code from http://www.py4e.com/code/ and run it.
 
 This is a good example of how Python and the Python language are acting as an intermediary
 between you (the end user) and me (the programmer).  Python is a way for us to exchange useful

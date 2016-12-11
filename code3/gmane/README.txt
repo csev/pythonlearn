@@ -39,25 +39,31 @@ running gmane.py.
 
 Navigate to the folder where you extracted the gmane.zip
 
+Note: Windows has difficulty in displaying UTF-8 characters
+in the console so for each console window you open, you may need
+to type the following command before running this code:
+
+    chcp 65001
+
+http://stackoverflow.com/questions/388490/unicode-characters-in-windows-command-line-how
+
 Here is a run of gmane.py getting the last five messages of the
 sakai developer list:
 
-Mac: python gmane.py 
+Mac: python3 gmane.py 
 Win: gmane.py 
 
 How many messages:10
-http://download.gmane.org/gmane.comp.cms.sakai.devel/51410/51411 9460
-    nealcaidin@sakaifoundation.org 2013-04-05T12:37:27-04:00 re: [building sakai] testing common cartridge
-http://download.gmane.org/gmane.comp.cms.sakai.devel/51411/51412 3379
-    samuelgutierrezjimenez@gmail.com 2013-04-06T03:30:11-07:00 re: [building sakai] melete 2.9 oracle issue (w/ possible fix)
-http://download.gmane.org/gmane.comp.cms.sakai.devel/51412/51413 9903
-    da1@vt.edu 2013-04-05T15:58:51-04:00 [building sakai] melete 2.9 oracle issue (w/ possible fix)
-http://download.gmane.org/gmane.comp.cms.sakai.devel/51413/51414 349265
-    m.shedid@elraed-it.com 2013-04-07T11:19:40+03:00 [building sakai] setup development enviroment
-http://download.gmane.org/gmane.comp.cms.sakai.devel/51414/51415 3481
-    samuelgutierrezjimenez@gmail.com 2013-04-07T02:31:16-07:00 re: [building sakai] setup development enviroment
-http://download.gmane.org/gmane.comp.cms.sakai.devel/51415/51416 0
-
+http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/1/2 2662
+    ggolden@umich.edu 2005-12-08T23:34:30-06:00 call for participation: developers documentation
+http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/2/3 2434
+    csev@umich.edu 2005-12-09T00:58:01-05:00 report from the austin conference:  sakai developers break into song
+http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/3/4 3055
+    kevin.carpenter@rsmart.com 2005-12-09T09:01:49-07:00 cas and sakai 1.5
+http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/4/5 11721
+    michael.feldstein@suny.edu 2005-12-09T09:43:12-05:00 re: lms/vle rants/comments
+http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/5/6 9443
+    john@caret.cam.ac.uk 2005-12-09T13:32:29+00:00 re: lms/vle rants/comments
 Does not start with From 
 
 The program scans content.sqlite from 1 up to the first message number not
@@ -94,7 +100,7 @@ data cleaning process.
 
 Running gmodel.py works as follows:
 
-Mac: python gmodel.py
+Mac: python3 gmodel.py
 Win: gmodel.py
 
 Loaded allsenders 1588 and mapping 28 dns mapping 1
@@ -149,7 +155,7 @@ analysis.   With this file, data analysis will be really quick.
 The first, simplest data analysis is to do a "who does the most" and "which 
 organzation does the most"?  This is done using gbasic.py:
 
-Mac: python gbasic.py 
+Mac: python3 gbasic.py 
 Win: gbasic.py 
 
 How many to dump? 5
@@ -176,7 +182,7 @@ re-run gmodel.py.
 There is a simple vizualization of the word frequence in the subject lines
 in the file gword.py:
 
-Mac: python gword.py
+Mac: python3 gword.py
 Win: gword.py
 
 Range of counts: 33229 129
@@ -188,7 +194,7 @@ gword.htm.
 A second visualization is in gline.py.  It visualizes email participation by 
 organizations over time.
 
-Mac: python gline.py 
+Mac: python3 gline.py 
 Win: gline.py 
 
 Loaded messages= 51330 subjects= 25033 senders= 1584

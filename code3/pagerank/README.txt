@@ -13,8 +13,16 @@ http://sqlitebrowser.org/
 This program crawls a web site and pulls a series of pages into the
 database, recording the links between pages.
 
+Note: Windows has difficulty in displaying UTF-8 characters
+in the console so for each console window you open, you may need
+to type the following command before running this code:
+
+    chcp 65001
+
+http://stackoverflow.com/questions/388490/unicode-characters-in-windows-command-line-how
+
 Mac: rm spider.sqlite
-Mac: python spider.py
+Mac: python3 spider.py
 
 Win: del spider.sqlite
 Win: spider.py
@@ -32,7 +40,7 @@ pages, it will not re-crawl any pages already in the database.  Upon
 restart it goes to a random non-crawled page and starts there.  So 
 each successive run of spider.py is additive.
 
-Mac: python spider.py 
+Mac: python3 spider.py 
 Win: spider.py
 
 Enter web url or enter: http://www.dr-chuck.com/
@@ -51,7 +59,7 @@ the webs.
 If you want to dump the contents of the spider.sqlite file, you can 
 run spdump.py as follows:
 
-Mac: python spdump.py 
+Mac: python3 spdump.py 
 Win: spdump.py
 
 (5, None, 1.0, 3, u'http://www.dr-chuck.com/csev-blog')
@@ -68,7 +76,7 @@ Once you have a few pages in the database, you can run Page Rank on the
 pages using the sprank.py program.  You simply tell it how many Page
 Rank iterations to run.
 
-Mac: python sprank.py 
+Mac: python3 sprank.py 
 Win: sprank.py 
 
 How many iterations:2
@@ -78,7 +86,7 @@ How many iterations:2
 
 You can dump the database again to see that page rank has been updated:
 
-Mac: python spdump.py 
+Mac: python3 spdump.py 
 Win: spdump.py 
 
 (5, 1.0, 0.985, 3, u'http://www.dr-chuck.com/csev-blog')
@@ -95,12 +103,12 @@ to converge the page ranks.
 If you want to restart the Page Rank calculations without re-spidering the 
 web pages, you can use spreset.py
 
-Mac: python spreset.py 
+Mac: python3 spreset.py 
 Win: spreset.py 
 
 All pages set to a rank of 1.0
 
-Mac: python sprank.py 
+Mac: python3 sprank.py 
 Win: sprank.py 
 
 How many iterations:50
@@ -132,7 +140,7 @@ If you want to visualize the current top pages in terms of page rank,
 run spjson.py to write the pages out in JSON format to be viewed in a
 web browser.
 
-Mac: python spjson.py 
+Mac: python3 spjson.py 
 Win: spjson.py 
 
 Creating JSON output on spider.js...

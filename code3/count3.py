@@ -2,7 +2,7 @@ import string
 fhand = open('romeo-full.txt')
 counts = dict()
 for line in fhand:
-    line = line.translate(string.punctuation)
+    line = line.translate(str.maketrans('', '', string.punctuation))
     line = line.lower()
     words = line.split()
     for word in words:

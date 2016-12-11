@@ -17,6 +17,14 @@ a lot of data you might need to stop and restart the lookup
 process several times.  So we break the problem into two
 phases.  
 
+Note: Windows has difficulty in displaying UTF-8 characters
+in the console so for each console window you open, you may need
+to type the following command before running this code:
+
+    chcp 65001
+
+http://stackoverflow.com/questions/388490/unicode-characters-in-windows-command-line-how
+
 In the first phase we take our input data in the file
 (where.data) and read it one line at a time, and retrieve the
 geocoded response and store it in a database (geodata.sqlite).
@@ -32,10 +40,27 @@ in the database and if we don't have the data for the location,
 call the geocoding API to retrieve the data and store it in 
 the database.
 
+As of December 2016, the Google Geocoding API requires an API
+key.   To complete this assignment, you can use a subset of that data 
+which is available at:
+
+http://python-data.dr-chuck.net/geojson
+
+This URL only has a subset of the data but it has no rate limit so 
+it is good for testing.
+
+For example:
+
+http://python-data.dr-chuck.net/geojson?address=Northeastern+University
+
+If you get an API from Google, you can use the original URL:
+
+http://maps.googleapis.com/maps/api/geocode/json?address=Monash+University
+
 Here is a sample run after there is already some data in the 
 database:
 
-Mac: python geoload.py
+Mac: python3 geoload.py
 Win: geoload.py
 
 Found in database  Northeastern University
@@ -51,12 +76,12 @@ Found in database  UMD
 Found in database  Tufts University
 
 Resolving Monash University
-Retrieving http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Monash+University
+Retrieving http://maps.googleapis.com/maps/api/geocode/json?address=Monash+University
 Retrieved 2063 characters {    "results" : [  
 {u'status': u'OK', u'results': ... }
 
 Resolving Kokshetau Institute of Economics and Management
-Retrieving http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Kokshetau+Institute+of+Economics+and+Management
+Retrieving http://maps.googleapis.com/maps/api/geocode/json?address=Kokshetau+Institute+of+Economics+and+Management
 Retrieved 1749 characters {    "results" : [  
 {u'status': u'OK', u'results': ... }
 
@@ -76,7 +101,7 @@ executable JavaScript code.
 
 A run of the geodump.py program is as follows:
 
-Mac: python geodump.py
+Mac: python3 geodump.py
 Win: geodump.py
 
 Northeastern University, 360 Huntington Avenue, Boston, MA 02115, USA 42.3396998 -71.08975

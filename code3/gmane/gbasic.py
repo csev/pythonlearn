@@ -6,7 +6,6 @@ import zlib
 howmany = int(input("How many to dump? "))
 
 conn = sqlite3.connect('index.sqlite')
-conn.text_factory = str
 cur = conn.cursor()
 
 cur.execute('SELECT id, sender FROM Senders')

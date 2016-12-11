@@ -5,7 +5,6 @@ import zlib
 import string
 
 conn = sqlite3.connect('index.sqlite')
-conn.text_factory = str
 cur = conn.cursor()
 
 cur.execute('SELECT id, subject FROM Subjects')
@@ -18,8 +17,8 @@ cur.execute('SELECT subject_id FROM Messages')
 counts = dict()
 for message_row in cur :
     text = subjects[message_row[0]]
-    text = text.translate(None, string.punctuation)
-    text = text.translate(None, '1234567890')
+    text = text.translate(str.maketrans('','',string.punctuation))
+    text = text.translate(str.maketrans('','','1234567890'))
     text = text.strip()
     text = text.lower()
     words = text.split()
@@ -54,3 +53,4 @@ for k in x[:100]:
 fhand.write( "\n];\n")
 
 print("Output written to gword.js")
+print("Open gword.htm in a browser to see the vizualization")

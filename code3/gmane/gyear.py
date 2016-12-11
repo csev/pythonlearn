@@ -4,7 +4,6 @@ import urllib.request, urllib.parse, urllib.error
 import zlib
 
 conn = sqlite3.connect('index.sqlite')
-conn.text_factory = str
 cur = conn.cursor()
 
 cur.execute('SELECT id, sender FROM Senders')
@@ -54,7 +53,7 @@ months.sort()
 # print counts
 # print months
 
-fhand = open('gline.jsonp','w')
+fhand = open('gline.js','w')
 fhand.write("gline = [ ['Year'")
 for org in orgs:
     fhand.write(",'"+org+"'")
@@ -70,4 +69,6 @@ for month in months[1:-1]:
 
 fhand.write("\n];\n")
 
-print("Output written to gline.jsonp")
+print("Output written to gline.js")
+print("Open gline.htm to visualize the data")
+

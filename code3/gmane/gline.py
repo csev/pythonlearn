@@ -4,7 +4,6 @@ import urllib.request, urllib.parse, urllib.error
 import zlib
 
 conn = sqlite3.connect('index.sqlite')
-conn.text_factory = str
 cur = conn.cursor()
 
 cur.execute('SELECT id, sender FROM Senders')
@@ -68,3 +67,4 @@ for month in months:
 fhand.write("\n];\n")
 
 print("Output written to gline.js")
+print("Open gline.htm to visualize the data")

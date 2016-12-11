@@ -8,7 +8,7 @@ while True:
     if len(address) < 1: break
 
     url = serviceurl + urllib.parse.urlencode(
-        {'sensor': 'false', 'address': address})
+        {'address': address})
 
     print('Retrieving', url)
     uh = urllib.request.urlopen(url)

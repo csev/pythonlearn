@@ -89,9 +89,7 @@ while True:
 
         print('('+str(len(html))+')', end=' ')
 
-# html5lib is a 3rd party HTML parser.  Install with 'pip install html5lib'
-# or change the line below by replaceing 'html5lib' with 'html.parser'
-        soup = BeautifulSoup(html, "html5lib")
+        soup = BeautifulSoup(html, "html.parser")
     except KeyboardInterrupt:
         print('')
         print('Program interrupted by user...')

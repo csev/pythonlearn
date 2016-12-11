@@ -28,14 +28,14 @@ def fixsender(sender,allsenders=None) :
             if s.startswith(pieces[0]) :
                 realsender = sender
                 sender = s
-                # print realsender, sender
+                # print(realsender, sender)
                 break
         if realsender is None : 
             for s in mapping:
                 if s.startswith(pieces[0]) :
                     realsender = sender
                     sender = mapping[s]
-                    # print realsender, sender
+                    # print(realsender, sender)
                     break
         if realsender is None : sender = pieces[0]
 
@@ -48,8 +48,8 @@ def fixsender(sender,allsenders=None) :
         dns = ".".join(pieces[-2:])
     else:
         dns = ".".join(pieces[-3:])
-    # if dns != x : print x,dns
-    # if dns != dnsmapping.get(dns,dns) : print dns,dnsmapping.get(dns,dns)
+    # if dns != x : print(x,dns)
+    # if dns != dnsmapping.get(dns,dns) : print(dns,dnsmapping.get(dns,dns))
     dns = dnsmapping.get(dns,dns)
     return mpieces[0] + '@' + dns
 
@@ -79,7 +79,7 @@ def parsemaildate(md) :
             continue
 
     if dnotz is None :
-        # print 'Bad Date:',md
+        # print('Bad Date:',md)
         return None
 
     iso = dnotz.isoformat()
@@ -121,7 +121,7 @@ def parseheader(hdr, allsenders=None):
         try:
             sent_at = parsemaildate(tdate)
         except Exception as e:
-            # print 'Date ignored ',tdate, e
+            # print('Date ignored ',tdate, e)
             return None
 
     subject = None
@@ -137,7 +137,6 @@ def parseheader(hdr, allsenders=None):
     return (guid, sender, subject, sent_at)
 
 conn = sqlite3.connect('index.sqlite')
-conn.text_factory = str
 cur = conn.cursor()
 
 cur.execute('''DROP TABLE IF EXISTS Messages ''')
@@ -156,8 +155,7 @@ cur.execute('''CREATE TABLE IF NOT EXISTS Subjects
 cur.execute('''CREATE TABLE IF NOT EXISTS Replies 
     (from_id INTEGER, to_id INTEGER)''')
 
-conn_1 = sqlite3.connect('content.sqlite')
-conn_1.text_factory = str
+conn_1 = sqlite3.connect('mapping.sqlite')
 cur_1 = conn_1.cursor()
 
 cur_1.execute('''SELECT old,new FROM DNSMapping''')
@@ -170,6 +168,13 @@ for message_row in cur_1 :
     old = fixsender(message_row[0])
     new = fixsender(message_row[1])
     mapping[old] = fixsender(new)
+
+# Done with mapping.sqlite
+conn_1.close()
+
+# Open the main content (Read only)
+conn_1 = sqlite3.connect('file:content.sqlite?mode=ro', uri=True)
+cur_1 = conn_1.cursor()
 
 allsenders = list()
 cur_1.execute('''SELECT email FROM Messages''')
@@ -202,7 +207,7 @@ for message_row in cur_1 :
 
     count = count + 1
     if count % 250 == 1 : print(count,sent_at, sender)
-    # print guid, sender, subject, sent_at
+    # print(guid, sender, subject, sent_at)
 
     if 'gmane.org' in sender:
         print("Error in sender ===", sender)
@@ -233,9 +238,10 @@ for message_row in cur_1 :
         except:
             print('Could not retrieve subject id',subject)
             break
-    # print sender_id, subject_id
+    # print(sender_id, subject_id)
     cur.execute('INSERT OR IGNORE INTO Messages (guid,sender_id,subject_id,sent_at,headers,body) VALUES ( ?,?,?,datetime(?),?,? )', 
-            ( guid, sender_id, subject_id, sent_at, zlib.compress(message_row[0]), zlib.compress(message_row[1])) )
+            ( guid, sender_id, subject_id, sent_at, 
+            zlib.compress(message_row[0].encode()), zlib.compress(message_row[1].encode())) )
     conn.commit()
     cur.execute('SELECT id FROM Messages WHERE guid=? LIMIT 1', ( guid, ))
     try:
