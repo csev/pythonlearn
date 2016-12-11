@@ -1,7 +1,9 @@
 #! /bin/sh
 
 rm *.pyc */*.pyc
+mv gmane/mapping.sqlite gmane/mapping.save
 rm *.sqlite */*.sqlite
+mv gmane/mapping.save gmane/mapping.sqlite
 rm *.zip
 
 zip -r geodata.zip geodata
