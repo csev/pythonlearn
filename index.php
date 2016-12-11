@@ -200,7 +200,7 @@ translated into 30 languages and are available in Google Drive.
           <li>
             <p>Get the <a href="<?= $CFG->cdnroot ?>/lectures/Py4Inf-12-HTTP.ppt" target="_blank">Slides</a>,
             <br>Watch on <a href="https://www.youtube.com/watch?v=Zr8BQiPNaFI&index=30&list=PLlRFEj9H3Oj4JXIwMwN1_ss1Tk8wZShEJ" target="_blank">YouTube</a>,
-            <br>Watch or Download the <a href="<?php $afs ?>/books/py4inf/media/Py4Inf-12-HTTP.mov" target="_blank">Video</a>,
+            <br>Watch or Download the <a href="<?= $afs ?>/books/py4inf/media/Py4Inf-12-HTTP.mov" target="_blank">Video</a>,
             </p>
             <p>
               Listen or Download the Lecture Audio
