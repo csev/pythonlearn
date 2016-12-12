@@ -1,20 +1,22 @@
 import urllib.request, urllib.parse, urllib.error
+import http
 import sqlite3
 import json
 import time
 import ssl
 import sys
 
-# Google API (requires API key)
-# serviceurl = "http://maps.googleapis.com/maps/api/geocode/json?"
-# If you are in China use this URL:
-# serviceurl = "http://maps.google.cn/maps/api/geocode/json?"
+api_key = False
+# If you have a Google Places API key, enter it here
+# api_key = 'AIzaSy___IDByT70'
 
-serviceurl = "http://python-data.dr-chuck.net/geojson?"
+if api_key is False:
+    serviceurl = "http://py4e-data.dr-chuck.net/geojson?"
+else :
+    serviceurl = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
 
-# Deal with SSL certificate anomalies Python > 2.7
-# scontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
-scontext = None
+# Additional detail for urllib
+# http.client.HTTPConnection.debuglevel = 1
 
 conn = sqlite3.connect('geodata.sqlite')
 cur = conn.cursor()
@@ -40,13 +42,19 @@ for line in fh:
     except:
         pass
 
-    print('Resolving', address)
-    url = serviceurl + urllib.parse.urlencode({"address": address})
+    parms = dict()
+    parms["query"] = address
+    if api_key is not False: parms['key'] = api_key
+    url = serviceurl + urllib.parse.urlencode(parms)
+
     print('Retrieving', url)
+    # req = urllib.request.Request(url, headers={'User-Agent' : "Magic Browser"}) 
+    # uh = urllib.request.urlopen( req )
     uh = urllib.request.urlopen(url)
     data = uh.read().decode()
     print('Retrieved', len(data), 'characters', data[:20].replace('\n', ' '))
     count = count + 1
+
     try:
         js = json.loads(data)
     except:
