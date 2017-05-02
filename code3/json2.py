@@ -1,6 +1,6 @@
 import json
 
-input = '''
+data = '''
 [
   { "id" : "001",
     "x" : "2",
@@ -12,7 +12,7 @@ input = '''
   }
 ]'''
 
-info = json.loads(input)
+info = json.loads(data)
 print('User count:', len(info))
 
 for item in info:

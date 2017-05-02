@@ -7,15 +7,23 @@
 
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
+import ssl
+
+# Ignore SSL certificate errors for https
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
 
 todo = list()
 visited = list()
 url = input('Enter - ')
 todo.append(url)
+count = int(input('How many to retrieve - '))
 
-while len(todo) > 0:
-    print("====== Todo list count is ", len(todo))
+while len(todo) > 0 and count > 0 :
+    print("====== To Retrieve:",count, "Queue Length:", len(todo))
     url = todo.pop()
+    count = count - 1
 
     if (not url.startswith('http')):
         print("Skipping", url)
@@ -24,13 +32,21 @@ while len(todo) > 0:
     if (url.find('facebook') > 0):
         continue
 
+    if (url.find('linkedin') > 0):
+        continue
+
     if (url in visited):
         print("Visited", url)
         continue
 
     print("===== Retrieving ", url)
 
-    html = urllib.request.urlopen(url).read()
+    try:
+        html = urllib.request.urlopen(url, context=ctx).read()
+    except:
+        print("*** Error in retrieval")
+        continue
+
     soup = BeautifulSoup(html, 'html.parser')
     visited.append(url)
 

@@ -57,13 +57,18 @@ def parsemaildate(md) :
 
     return iso+tz
 
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
 conn = sqlite3.connect('content.sqlite')
 cur = conn.cursor()
 
 baseurl = "http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/"
 
-cur.execute('''CREATE TABLE IF NOT EXISTS Messages 
-    (id INTEGER UNIQUE, email TEXT, sent_at TEXT, 
+cur.execute('''CREATE TABLE IF NOT EXISTS Messages
+    (id INTEGER UNIQUE, email TEXT, sent_at TEXT,
      subject TEXT, headers TEXT, body TEXT)''')
 
 # Pick up where we left off
@@ -71,7 +76,7 @@ start = None
 cur.execute('SELECT max(id) FROM Messages' )
 try:
     row = cur.fetchone()
-    if row is None : 
+    if row is None :
         start = 0
     else:
         start = row[0]
@@ -85,6 +90,7 @@ count = 0
 fail = 0
 while True:
     if ( many < 1 ) :
+        conn.commit()
         sval = input('How many messages:')
         if ( len(sval) < 1 ) : break
         many = int(sval)
@@ -103,7 +109,7 @@ while True:
     text = "None"
     try:
         # Open with a timeout of 30 seconds
-        document = urllib.request.urlopen(url, None, 30)
+        document = urllib.request.urlopen(url, None, 30, context=ctx)
         text = document.read().decode()
         if document.getcode() != 200 :
             print("Error code=",document.getcode(), url)
@@ -130,7 +136,7 @@ while True:
         continue
 
     pos = text.find("\n\n")
-    if pos > 0 : 
+    if pos > 0 :
         hdr = text[:pos]
         body = text[pos+2:]
     else:
@@ -139,23 +145,23 @@ while True:
         fail = fail + 1
         if fail > 5 : break
         continue
-    
+
     email = None
     x = re.findall('\nFrom: .* <(\S+@\S+)>\n', hdr)
-    if len(x) == 1 : 
+    if len(x) == 1 :
         email = x[0];
         email = email.strip().lower()
         email = email.replace("<","")
     else:
         x = re.findall('\nFrom: (\S+@\S+)\n', hdr)
-        if len(x) == 1 : 
+        if len(x) == 1 :
             email = x[0];
             email = email.strip().lower()
             email = email.replace("<","")
 
     date = None
     y = re.findall('\Date: .*, (.*)\n', hdr)
-    if len(y) == 1 : 
+    if len(y) == 1 :
         tdate = y[0]
         tdate = tdate[:26]
         try:
@@ -174,10 +180,10 @@ while True:
     # Reset the fail counter
     fail = 0
     print("   ",email,sent_at,subject)
-    cur.execute('''INSERT OR IGNORE INTO Messages (id, email, sent_at, subject, headers, body) 
+    cur.execute('''INSERT OR IGNORE INTO Messages (id, email, sent_at, subject, headers, body)
         VALUES ( ?, ?, ?, ?, ?, ? )''', ( start, email, sent_at, subject, hdr, body))
     if count % 50 == 0 : conn.commit()
     if count % 100 == 0 : time.sleep(1)
 
+conn.commit()
 cur.close()
-

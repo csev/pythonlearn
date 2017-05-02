@@ -3,6 +3,7 @@ import urllib.error
 import twurl
 import json
 import sqlite3
+import ssl
 
 TWITTER_URL = 'https://api.twitter.com/1.1/friends/list.json'
 
@@ -12,6 +13,11 @@ cur = conn.cursor()
 cur.execute('''
             CREATE TABLE IF NOT EXISTS Twitter
             (name TEXT, retrieved INTEGER, friends INTEGER)''')
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
 
 while True:
     acct = input('Enter a Twitter account, or quit: ')
@@ -26,7 +32,7 @@ while True:
 
     url = twurl.augment(TWITTER_URL, {'screen_name': acct, 'count': '5'})
     print('Retrieving', url)
-    connection = urlopen(url)
+    connection = urlopen(url, context=ctx)
     data = connection.read().decode()
     headers = dict(connection.getheaders())
 

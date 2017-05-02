@@ -24,6 +24,11 @@ cur = conn.cursor()
 cur.execute('''
 CREATE TABLE IF NOT EXISTS Locations (address TEXT, geodata TEXT)''')
 
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
 fh = open("where.data")
 count = 0
 for line in fh:
@@ -33,7 +38,8 @@ for line in fh:
 
     address = line.strip()
     print('')
-    cur.execute("SELECT geodata FROM Locations WHERE address= ?", (memoryview(address.encode()), ))
+    cur.execute("SELECT geodata FROM Locations WHERE address= ?",
+        (memoryview(address.encode()), ))
 
     try:
         data = cur.fetchone()[0]
@@ -48,9 +54,7 @@ for line in fh:
     url = serviceurl + urllib.parse.urlencode(parms)
 
     print('Retrieving', url)
-    # req = urllib.request.Request(url, headers={'User-Agent' : "Magic Browser"}) 
-    # uh = urllib.request.urlopen( req )
-    uh = urllib.request.urlopen(url)
+    uh = urllib.request.urlopen(url, context=ctx)
     data = uh.read().decode()
     print('Retrieved', len(data), 'characters', data[:20].replace('\n', ' '))
     count = count + 1
@@ -61,14 +65,14 @@ for line in fh:
         print(data)  # We print in case unicode causes an error
         continue
 
-    if 'status' not in js or (js['status'] != 'OK' and js['status'] != 'ZERO_RESULTS') : 
+    if 'status' not in js or (js['status'] != 'OK' and js['status'] != 'ZERO_RESULTS') :
         print('==== Failure To Retrieve ====')
         print(data)
         break
 
-    cur.execute('''INSERT INTO Locations (address, geodata) 
+    cur.execute('''INSERT INTO Locations (address, geodata)
             VALUES ( ?, ? )''', (memoryview(address.encode()), memoryview(data.encode()) ) )
-    conn.commit() 
+    conn.commit()
     if count % 10 == 0 :
         print('Pausing for a bit...')
         time.sleep(5)

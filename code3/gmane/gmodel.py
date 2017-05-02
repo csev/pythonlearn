@@ -1,12 +1,12 @@
 import sqlite3
 import time
-import urllib.request, urllib.parse, urllib.error
 import re
 import zlib
 from datetime import datetime, timedelta
+
 # Not all systems have this
 try:
-    import dateutil.parser as parser 
+    import dateutil.parser as parser
 except:
     pass
 
@@ -21,7 +21,7 @@ def fixsender(sender,allsenders=None) :
     sender = sender.replace('<','').replace('>','')
 
     # Check if we have a hacked gmane.org from address
-    if allsenders is not None and sender.endswith('gmane.org') : 
+    if allsenders is not None and sender.endswith('gmane.org') :
         pieces = sender.split('-')
         realsender = None
         for s in allsenders:
@@ -30,7 +30,7 @@ def fixsender(sender,allsenders=None) :
                 sender = s
                 # print(realsender, sender)
                 break
-        if realsender is None : 
+        if realsender is None :
             for s in mapping:
                 if s.startswith(pieces[0]) :
                     realsender = sender
@@ -66,11 +66,11 @@ def parsemaildate(md) :
 
     pieces = md.split()
     notz = " ".join(pieces[:4]).strip()
-   
+
     # Try a bunch of format variations - strptime() is *lame*
     dnotz = None
-    for form in [ '%d %b %Y %H:%M:%S', '%d %b %Y %H:%M:%S', 
-        '%d %b %Y %H:%M', '%d %b %Y %H:%M', '%d %b %y %H:%M:%S', 
+    for form in [ '%d %b %Y %H:%M:%S', '%d %b %Y %H:%M:%S',
+        '%d %b %Y %H:%M', '%d %b %Y %H:%M', '%d %b %y %H:%M:%S',
         '%d %b %y %H:%M:%S', '%d %b %y %H:%M', '%d %b %y %H:%M' ] :
         try:
             dnotz = datetime.strptime(notz, form)
@@ -144,15 +144,15 @@ cur.execute('''DROP TABLE IF EXISTS Senders ''')
 cur.execute('''DROP TABLE IF EXISTS Subjects ''')
 cur.execute('''DROP TABLE IF EXISTS Replies ''')
 
-cur.execute('''CREATE TABLE IF NOT EXISTS Messages 
-    (id INTEGER PRIMARY KEY, guid TEXT UNIQUE, sent_at INTEGER, 
-     sender_id INTEGER, subject_id INTEGER, 
+cur.execute('''CREATE TABLE IF NOT EXISTS Messages
+    (id INTEGER PRIMARY KEY, guid TEXT UNIQUE, sent_at INTEGER,
+     sender_id INTEGER, subject_id INTEGER,
      headers BLOB, body BLOB)''')
-cur.execute('''CREATE TABLE IF NOT EXISTS Senders 
+cur.execute('''CREATE TABLE IF NOT EXISTS Senders
     (id INTEGER PRIMARY KEY, sender TEXT UNIQUE)''')
-cur.execute('''CREATE TABLE IF NOT EXISTS Subjects 
+cur.execute('''CREATE TABLE IF NOT EXISTS Subjects
     (id INTEGER PRIMARY KEY, subject TEXT UNIQUE)''')
-cur.execute('''CREATE TABLE IF NOT EXISTS Replies 
+cur.execute('''CREATE TABLE IF NOT EXISTS Replies
     (from_id INTEGER, to_id INTEGER)''')
 
 conn_1 = sqlite3.connect('mapping.sqlite')
@@ -187,7 +187,7 @@ for message_row in cur_1 :
 
 print("Loaded allsenders",len(allsenders),"and mapping",len(mapping),"dns mapping",len(dnsmapping))
 
-cur_1.execute('''SELECT headers, body, sent_at 
+cur_1.execute('''SELECT headers, body, sent_at
     FROM Messages ORDER BY sent_at''')
 
 senders = dict()
@@ -201,7 +201,7 @@ for message_row in cur_1 :
     parsed = parseheader(hdr, allsenders)
     if parsed is None: continue
     (guid, sender, subject, sent_at) = parsed
-    
+
     # Apply the sender mapping
     sender = mapping.get(sender,sender)
 
@@ -216,7 +216,7 @@ for message_row in cur_1 :
     subject_id = subjects.get(subject,None)
     guid_id = guids.get(guid,None)
 
-    if sender_id is None : 
+    if sender_id is None :
         cur.execute('INSERT OR IGNORE INTO Senders (sender) VALUES ( ? )', ( sender, ) )
         conn.commit()
         cur.execute('SELECT id FROM Senders WHERE sender=? LIMIT 1', ( sender, ))
@@ -227,7 +227,7 @@ for message_row in cur_1 :
         except:
             print('Could not retrieve sender id',sender)
             break
-    if subject_id is None : 
+    if subject_id is None :
         cur.execute('INSERT OR IGNORE INTO Subjects (subject) VALUES ( ? )', ( subject, ) )
         conn.commit()
         cur.execute('SELECT id FROM Subjects WHERE subject=? LIMIT 1', ( subject, ))
@@ -239,8 +239,8 @@ for message_row in cur_1 :
             print('Could not retrieve subject id',subject)
             break
     # print(sender_id, subject_id)
-    cur.execute('INSERT OR IGNORE INTO Messages (guid,sender_id,subject_id,sent_at,headers,body) VALUES ( ?,?,?,datetime(?),?,? )', 
-            ( guid, sender_id, subject_id, sent_at, 
+    cur.execute('INSERT OR IGNORE INTO Messages (guid,sender_id,subject_id,sent_at,headers,body) VALUES ( ?,?,?,datetime(?),?,? )',
+            ( guid, sender_id, subject_id, sent_at,
             zlib.compress(message_row[0].encode()), zlib.compress(message_row[1].encode())) )
     conn.commit()
     cur.execute('SELECT id FROM Messages WHERE guid=? LIMIT 1', ( guid, ))
@@ -254,4 +254,3 @@ for message_row in cur_1 :
 
 cur.close()
 cur_1.close()
-

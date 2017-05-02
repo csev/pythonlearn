@@ -1,6 +1,5 @@
 import sqlite3
 import time
-import urllib.request, urllib.parse, urllib.error
 import zlib
 import string
 

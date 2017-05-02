@@ -1,6 +1,5 @@
 import sqlite3
 import time
-import urllib.request, urllib.parse, urllib.error
 import zlib
 
 conn = sqlite3.connect('index.sqlite')
@@ -45,7 +44,7 @@ for (message_id, message) in list(messages.items()):
     if month not in months : months.append(month)
     key = (month, dns)
     counts[key] = counts.get(key,0) + 1
-    
+
 months.sort()
 # print counts
 # print months

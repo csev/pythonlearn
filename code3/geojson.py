@@ -1,6 +1,8 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 
+# Note that Google is increasingly requiring keys
+# for this API
 serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 while True:

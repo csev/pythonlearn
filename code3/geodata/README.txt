@@ -57,7 +57,12 @@ geoload.py.
 This URL only has a subset of the data but it has no rate limit so
 it is good for testing.
 
-If you want to try this with the API key, go to
+If you want to try this with the API key, follow the
+instructions at:
+
+https://developers.google.com/maps/documentation/geocoding/intro
+
+and put the API key in the code.
 
 Here is a sample run after there is already some data in the
 database:

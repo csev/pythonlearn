@@ -1,6 +1,5 @@
 import sqlite3
 import time
-import urllib.request, urllib.parse, urllib.error
 import zlib
 
 howmany = int(input("How many to dump? "))
@@ -51,4 +50,3 @@ x = sorted(sendorgs, key=sendorgs.get, reverse=True)
 for k in x[:howmany]:
     print(k, sendorgs[k])
     if sendorgs[k] < 10 : break
-
