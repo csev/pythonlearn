@@ -3,10 +3,10 @@
 <div class="hide-for-large" id="mobile-support"></div>
 <div id="first-row" class="row">
   <div class="small-12 medium-12 large-6 columns">
-    <p>The goal of this site is to provide a set of materials in support of my <a href="book.php#python-for-informatics">Python for Informatics: Exploring Information</a> book to allow you to learn Python on your own. This page serves as an outline of the materials to support the textbook.
+    <p><b>New:</b> The <a href="http://www.py4e.com/">Python 3 version</a> of the book and course material is available at <a href="http://www.py4e.com/">www.py4e.com</a>.  This site is maintained for those who want to continue to learn
+Python 2. 
     </p>
-    <p><b>New:</b> The <a href="book.php">Python 3 version</a> of the book is now available.  Over the next few months, the slides, and lecture recordings
-will be updated to be Python 3.  We will keep all the Python 2 material as archives once the Python 3 material is complete.
+    <p>The goal of this site is to provide a set of materials in support of my <a href="book.php#python-for-informatics">Python for Informatics: Exploring Information</a> book to allow you to learn Python 2 on your own. This page serves as an outline of the materials to support the textbook.
     </p>
     <p>You can download the exercises, audio, and video lectures to your local computer so you can play them locally. This can be done with either a Right-Click or a Control-Click in most browsers.
     </p>
