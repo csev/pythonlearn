@@ -36,8 +36,8 @@ of the socket are doing a dance and making sure not to step on each other&#X2019
 Protocol is described in the following document:</span></p><p><span class="c002">http://www.w3.org/Protocols/rfc2616/rfc2616.txt</span></p><p><span class="c006">This is a long and complex 176-page document with a lot of detail. If you 
 find it interesting, feel free to read it all. But if you take a look around page 36 of
 RFC2616 you will find the syntax for the GET request. To request a document from a web
-server, we make a connection to the <span class="c001">www.py4inf.com</span> server on port 80, and then
-send a line of the form</span></p><p><span class="c002">GET http://www.py4inf.com/code/romeo.txt HTTP/1.0 </span></p><p><span class="c006">where the second parameter is the web page we are requesting, and then 
+server, we make a connection to the <span class="c001">data.py4e.org</span> server on port 80, and then
+send a line of the form</span></p><p><span class="c002">GET http://data.py4e.org/romeo.txt HTTP/1.0 </span></p><p><span class="c006">where the second parameter is the web page we are requesting, and then 
 we also send a blank line. The web server will respond with some 
 header information about the document and a blank line
 followed by the document content.</span></p><span class="c005">
@@ -48,8 +48,8 @@ the rules of the HTTP protocol to requests a document
 and display what the server sends back.</span></p><pre class="verbatim"><span class="c004">import socket
 
 mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysock.connect(('www.py4inf.com', 80))
-mysock.send('GET http://www.py4inf.com/code/romeo.txt HTTP/1.0\n\n')
+mysock.connect(('data.py4e.org', 80))
+mysock.send('GET http://data.py4e.org/romeo.txt HTTP/1.0\n\n')
 
 while True:
     data = mysock.recv(512)
