@@ -45,6 +45,12 @@
              </ul>
           </li>
           <li>
+             <a href="#">Portuguese (Brazil)</a>
+             <ul class="menu vertical nested">
+                <li class="menu-text"><a href="http://do1.dr-chuck.net/py4inf/PT-br/book.pdf" target="_blank">PDF</a> from <a href="https://twitter.com/victorjabur" target="_blank">Victor Hugo Jabur Passavaz</a></li>
+             </ul>
+          </li>
+          <li>
              <a href="#">Korean</a>
              <ul class="menu vertical nested">
                 <li class="menu-text"><a href="http://amzn.to/1N74xLt" target="_blank">Amazon</a> ( 정보교육을 위한 파이썬: 정보탐색을 통한 데이터 과학자로의 여정)</li>
