@@ -9,7 +9,7 @@ http://gmane.org/export.php
 In order not to overwhelm the gmane.org server, I have put up 
 my own copy of the messages at: 
 
-http://gmane.dr-chuck.net/
+http://mbox.dr-chuck.net/
 
 This server will be faster and take a lot of load off the 
 gmane.org server.
@@ -54,15 +54,15 @@ Mac: python3 gmane.py
 Win: gmane.py 
 
 How many messages:10
-http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/1/2 2662
+http://mbox.dr-chuck.net/sakai.devel/1/2 2662
     ggolden@umich.edu 2005-12-08T23:34:30-06:00 call for participation: developers documentation
-http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/2/3 2434
+http://mbox.dr-chuck.net/sakai.devel/2/3 2434
     csev@umich.edu 2005-12-09T00:58:01-05:00 report from the austin conference:  sakai developers break into song
-http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/3/4 3055
+http://mbox.dr-chuck.net/sakai.devel/3/4 3055
     kevin.carpenter@rsmart.com 2005-12-09T09:01:49-07:00 cas and sakai 1.5
-http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/4/5 11721
+http://mbox.dr-chuck.net/sakai.devel/4/5 11721
     michael.feldstein@suny.edu 2005-12-09T09:43:12-05:00 re: lms/vle rants/comments
-http://gmane.dr-chuck.net/gmane.comp.cms.sakai.devel/5/6 9443
+http://mbox.dr-chuck.net/sakai.devel/5/6 9443
     john@caret.cam.ac.uk 2005-12-09T13:32:29+00:00 re: lms/vle rants/comments
 Does not start with From 
 

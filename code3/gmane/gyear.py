@@ -68,6 +68,7 @@ for month in months[1:-1]:
     fhand.write("]");
 
 fhand.write("\n];\n")
+fhand.close()
 
 print("Output written to gline.js")
 print("Open gline.htm to visualize the data")

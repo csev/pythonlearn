@@ -68,12 +68,12 @@ Found in database  UMD
 Found in database  Tufts University
 
 Resolving Monash University
-Retrieving http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Monash+University
+Retrieving http://maps.googleapis.com/maps/api/geocode/json?address=Monash+University
 Retrieved 2063 characters {    "results" : [  
 {u'status': u'OK', u'results': ... }
 
 Resolving Kokshetau Institute of Economics and Management
-Retrieving http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Kokshetau+Institute+of+Economics+and+Management
+Retrieving http://maps.googleapis.com/maps/api/geocode/json?address=Kokshetau+Institute+of+Economics+and+Management
 Retrieved 1749 characters {    "results" : [  
 {u'status': u'OK', u'results': ... }
 

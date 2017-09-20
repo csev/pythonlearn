@@ -49,6 +49,7 @@ for k in words[:100]:
     size = int((size * bigsize) + smallsize)
     fhand.write("{text: '"+k+"', size: "+str(size)+"}")
 fhand.write( "\n];\n")
+fhand.close()
 
 print "Output written to gword.js"
 print "Open gword.htm in a browser to view"

@@ -1,7 +1,7 @@
 import os
 import urllib.request, urllib.parse, urllib.error
 
-print('Please enter a URL like http://data.pr4e.org/cover.jpg')
+print('Please enter a URL like http://data.pr4e.org/cover3.jpg')
 urlstr = input().strip()
 img = urllib.request.urlopen(urlstr)
 
