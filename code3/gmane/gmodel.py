@@ -56,7 +56,7 @@ def fixsender(sender,allsenders=None) :
 def parsemaildate(md) :
     # See if we have dateutil
     try:
-        pdate = parser.parse(tdate)
+        pdate = parser.parse(md)
         test_at = pdate.isoformat()
         return test_at
     except:

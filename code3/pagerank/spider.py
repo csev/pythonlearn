@@ -84,7 +84,6 @@ while True:
         if 'text/html' != document.info().get_content_type() :
             print("Ignore non text/html page")
             cur.execute('DELETE FROM Pages WHERE url=?', ( url, ) )
-            cur.execute('UPDATE Pages SET error=0 WHERE url=?', (url, ) )
             conn.commit()
             continue
 

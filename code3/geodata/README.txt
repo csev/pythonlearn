@@ -49,7 +49,7 @@ without an API key, or from a country that blocks
 access to Google, you can use a subset of that data which is
 available at:
 
-http://py4e-data.dr-chuck.net/geojson
+http://py4e-data.dr-chuck.net/json
 
 To use this, simply leave the api_key set to False in 
 geoload.py.
@@ -83,12 +83,12 @@ Found in database  UMD
 Found in database  Tufts University
 
 Resolving Monash University
-Retrieving http://py4e-data.dr-chuck.net/geojson?address=Monash+University
+Retrieving http://py4e-data.dr-chuck.net/json?key=42&address=Monash+University
 Retrieved 2063 characters {    "results" : [
 {u'status': u'OK', u'results': ... }
 
 Resolving Kokshetau Institute of Economics and Management
-Retrieving http://py4e-data.dr-chuck.net/geojson?address=Kokshetau+Institute+of+Economics+and+Management
+Retrieving http://py4e-data.dr-chuck.net/json?key=42&address=Kokshetau+Institute+of+Economics+and+Management
 Retrieved 1749 characters {    "results" : [
 {u'status': u'OK', u'results': ... }
 

@@ -12,4 +12,4 @@ for line in hand:
         val = float(x[0])
         nums.append(val)
 print(len(nums))
-print(sum(nums)/len(nums))
+print(int(sum(nums)/len(nums)))

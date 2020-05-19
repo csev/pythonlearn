@@ -28,7 +28,7 @@ for (message_id, message) in list(messages.items()):
 # pick the top schools
 orgs = sorted(sendorgs, key=sendorgs.get, reverse=True)
 orgs = orgs[:10]
-print("Top 10 Oranizations")
+print("Top 10 Organizations")
 print(orgs)
 
 counts = dict()
@@ -50,7 +50,7 @@ months.sort()
 # print months
 
 fhand = open('gline.js','w')
-fhand.write("gline = [ ['Year'")
+fhand.write("gline = [ ['Month'")
 for org in orgs:
     fhand.write(",'"+org+"'")
 fhand.write("]")

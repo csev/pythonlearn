@@ -3,13 +3,12 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>A Map of Information</title>
-    <link href="http://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <!-- If you are in China, you may need to use theis site for the Google Maps code
-    <script src="http://maps.google.cn/maps/api/js" type="text/javascript"></script> -->
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
-
-    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
+    <script src="https://maps.google.cn/maps/api/js" type="text/javascript"></script> -->
+    
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="where.js"></script>
     <script>
 
@@ -37,7 +36,13 @@
                 title: row[2]
             });
             markers.push(marker);
+<!-- New options for MarkerClusterer function to display markers -->
+	    var options = {
+			imagePath: 'http://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m'
+			}	
         }
+<!-- New var -->
+	var markerCluster = new MarkerClusterer(map, markers, options);
       }
     </script>
   </head>
@@ -46,7 +51,7 @@
 <p><b>About this Map</b></p>
 <p>
 This is a cool map from 
-<a href="http://www.py4e.com">www.py4e.com</a>.
+<a href="https://www.py4e.com">www.py4e.com</a>.
 </p>
 </body>
 </html>

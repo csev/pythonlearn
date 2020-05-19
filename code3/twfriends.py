@@ -23,7 +23,7 @@ while True:
     acct = input('Enter a Twitter account, or quit: ')
     if (acct == 'quit'): break
     if (len(acct) < 1):
-        cur.execute('SELECT id, name FROM People WHERE retrieved = 0 LIMIT 1')
+        cur.execute('SELECT id, name FROM People WHERE retrieved=0 LIMIT 1')
         try:
             (id, acct) = cur.fetchone()
         except:

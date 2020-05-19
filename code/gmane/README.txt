@@ -20,7 +20,7 @@ down.  So you may need to restart several times.
 To give you a head-start, I have put up 600MB of pre-spidered Sakai 
 email here:
 
-https://online.dr-chuck.com/files/sakai/email/content.sqlite.zip
+https://www.py4e.com/data_space/content.sqlite.zip
 
 If you download and unzip this, you can "catch up with the 
 latest" by running gmane.py.

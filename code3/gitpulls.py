@@ -7,7 +7,8 @@ api_url = 'https://api.github.com'
 repos = [
 'users/csev',
 'orgs/tsugiproject',
-'orgs/tsugitools'
+'orgs/tsugitools',
+'orgs/tsugicloud'
 ]
 
 pulls = dict()

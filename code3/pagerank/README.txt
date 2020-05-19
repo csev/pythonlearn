@@ -132,7 +132,7 @@ How many iterations:50
 
 For each iteration of the page rank algorithm it prints the average
 change per page of the page rank.   The network initially is quite 
-unbalanced and so the individual page ranks are changeing wildly.
+unbalanced and so the individual page ranks are changing wildly.
 But in a few short iterations, the page rank converges.  You 
 should run prank.py long enough that the page ranks converge.
 

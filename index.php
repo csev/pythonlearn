@@ -2,15 +2,21 @@
 <?php include("nav.php");?>
 <div class="hide-for-large" id="mobile-support"></div>
 <div id="first-row" class="row">
+<b>
+<p style="font-size:x-large;" >Please visit the Python 3 version of this material at
+</b>
+<a href="https://www.py4e.com/">www.py4e.com</a>.
+</p>
   <div class="small-12 medium-12 large-6 columns">
-    <p><b>New:</b> The <a href="http://www.py4e.com/">Python 3 version</a> of the book and course material is available at <a href="http://www.py4e.com/">www.py4e.com</a>.  This site is maintained for those who want to continue to learn
-Python 2. 
-    </p>
-    <p>The goal of this site is to provide a set of materials in support of my <a href="book.php#python-for-informatics">Python for Informatics: Exploring Information</a> book to allow you to learn Python 2 on your own. This page serves as an outline of the materials to support the textbook.
-    </p>
-    <p>You can download the exercises, audio, and video lectures to your local computer so you can play them locally. This can be done with either a Right-Click or a Control-Click in most browsers.
-    </p>
-
+<p>
+<blockquote>
+Between 2012 and 2017, over a million students around the world learned Python 2
+from this content on the web and on the Coursera platform.  As of January 1, 2020
+Python 2 is 
+<a href="https://www.python.org/doc/sunset-python-2/" target="_new">no longer supported</a>
+and so this site has been archived.<br/>
+&nbsp;&nbsp;&nbsp;  -- Dr. Charles Severance (drchuck) 05-May-2020
+</blockquote>
 
 <!-- desktop accordion menu -->
 <div class="acc-menu show-for-large">
@@ -514,10 +520,6 @@ $afs = "http://www-personal.umich.edu/~csev";
   </div>
 </div>
 
-
-<div class="row show-for-large">
-    <div class="small-12 columns" id="disqus_thread"></div>
-</div>
 <script>
 jQuery(document).ready(function(){
                 var elem1 = new Foundation.Accordion(jQuery('.accordion'));
@@ -525,6 +527,12 @@ jQuery(document).ready(function(){
                              {multiOpen: false});
             });
 
+</script>
+
+<!--
+<div class="row show-for-large">
+    <div class="small-12 columns" id="disqus_thread"></div>
+</div>
 
 /**
 * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -547,5 +555,6 @@ s.setAttribute('data-timestamp', +new Date());
 
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+-->
 <?php include("footer.php"); ?>
 

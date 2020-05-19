@@ -10,7 +10,9 @@ class PartyAnimal:
      print(self.name,'party count',self.x)
 
 s = PartyAnimal('Sally')
-s.party()
 j = PartyAnimal('Jim')
+
+s.party()
 j.party()
 s.party()
+

@@ -9,7 +9,8 @@
         var data = google.visualization.arrayToDataTable( gline );
 
         var options = {
-          title: 'Sakai Developer Email Participation by Organization'
+          title: 'Sakai Developer Email Participation by Organization',
+          chartArea: {left:'10%',top:'10%', width: '65%', height: '65%'}
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
@@ -18,6 +19,6 @@
     </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 1400px; height: 800px;"></div>
+    <div id="chart_div" style="width: 1300px; height: 600px;"></div>
   </body>
 </html>

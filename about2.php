@@ -3,66 +3,31 @@
 <div class="hide-for-large" id="mobile-support"></div>
 <div id="first-row" class="row">
     <div class="small-12 columns">
+<blockquote>
+Between 2012 and 2017, over a million students around the world learned Python 2
+from this content on the web and on the Coursera platform.  As of January 1, 2020
+Python 2 is
+<a href="https://www.python.org/doc/sunset-python-2/" target="_new">no longer supported</a>
+and so this site has been archived.<br/>
+&nbsp;&nbsp;&nbsp;  -- Dr. Charles Severance (drchuck) 05-May-2020
+</blockquote>
     <p>
 PythonLearn is intended to collect a set of generic Python Learning Resources
 to allow self-paced learning of the Python Language. 
-The materials from the site are collected from several courses at
-the University of Michigan that use Python:
+The materials from the site were collected from several courses at
+the University of Michigan that used Python:
 <ul>
-<li> <a href="https://wiki.eecs.umich.edu/eecs182/index.php/Main_Page" target=_new>
+<li> 
 EECS/SI 182 - Building Applications for Information Environments
-</a>
-<li><a href="https://www.si.umich.edu/programs/courses/502" >
+<li>
 SI 502 - Networked Computing: Storage, Communication, and Processing
-</a>
-<li><a href="https://www.si.umich.edu/programs/courses/539">
-SI 539 - Design of Complex Web Sites</a>.
+<li>
+SI 539 - Design of Complex Web Sites
 </p>
-</ul>
-<h3>Other Python Courses</h3>
-<p>
-This is a list of other courses that I have found using Python 
-to teach introductory materials.
-<ul>
-<li>
-<a href=http://www.cs.luc.edu/~anh/python/hands-on/ target=_new>
-Loyola University Chicago - Dr. Andrew N. Harrington</a>
-<li>
-<a href=http://mcsp.wartburg.edu/zelle/cs220/ target=_new >
-Wartburg College -
-John M. Zelle -
-CS 220: OOP and Data Structures
-</a></li>
-<li>
-<a href=http://coweb.cc.gatech.edu/cs1315 target=_new>
-Gergia Tech - 
-Colin Potts and Monica Sweat</a>
-</a></li>
-<li><a href=http://www.cs.sfu.ca/CC/120/diana/ target=_new>
-Simon Frasier University - 
-Diana Cukierman -
-CMPT 120 -
-</a></li>
-<li><a href=http://web.cse.msu.edu/~cse231/ target=_new>
-Michigan State University -
-Richard Enbody and Bill Punch - 
-CSE 231: Introduction to Programming I
-</a></li>
-<li><a href=http://www.cs.brynmawr.edu/cs110/dx/ target=_new >
-Bryn Mawr University - 
-Dianna Xu and Deepak Kuma
-</a></li>
-<li><a href=http://courses.csail.mit.edu/6.01/ target=_new>
-MIT - 
-Intro to EECS I</a>
 </ul>
 <a href=http://www.python.org/ target=_new>
 <img src=python-powered-h-100x130.png align=right border=0 width=45/>
 </a>
-<p>
-If you are teaching an introductory programming course using Python 
-at the college level - please drop me a note.
-</p>
 <p>
 <strong>Note to people teaching Python:  </strong> These materials are
 Copyright Creattive Commons Attribution 2.5.  You are welcome to use these

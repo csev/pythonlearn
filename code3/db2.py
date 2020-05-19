@@ -15,5 +15,6 @@ for row in cur:
      print(row)
 
 cur.execute('DELETE FROM Tracks WHERE plays < 100')
+conn.commit()
 
 cur.close()
