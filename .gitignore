@@ -1,4 +1,6 @@
 config.php
+.DS_Store
+tsugi
 *.swp
 *.pyc
 __pycache__
